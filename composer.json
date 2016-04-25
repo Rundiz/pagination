@@ -1,0 +1,23 @@
+{
+    "name": "rundiz/pagination",
+    "type": "library",
+    "description": "The highly customizable PHP pagination class.",
+    "keywords": ["pagination", "paging", "pager", "paginate", "slice pages", "dynamic pagination", "highly customizable pagination"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vee W.",
+            "email": "kawewong@gmail.com",
+            "homepage": "http://rundiz.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rundiz\\Pagination\\" : "Rundiz/Pagination"
+        }
+    }
+}
