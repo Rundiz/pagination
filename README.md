@@ -30,7 +30,7 @@ echo $Pagination->createLinks();
 More example is in tests folder.
 
 # Pagination parts description
-![Pagination] (tests/via-http/pagination-description.jpg "Pagination description")
+![Pagination](tests/via-http/pagination-description.jpg "Pagination description")
 
 * "before unavailable" items number can be set via "unavailable_before" property. Example: `$Pagination->unavailable_before = 1;`
 * "unavailable" text can be set via "unavailable_text" property. Example: `$Pagination->unavailable_text = '..';`
