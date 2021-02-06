@@ -497,7 +497,7 @@ unset($query_string_array);
                 $Pagination->number_display = true;
                 $Pagination->number_page_link_attributes = ['class' => 'page-link'];
                 $Pagination->number_tag_close = '</li>'."\n";
-                $Pagination->number_tag_open = '<li>';
+                $Pagination->number_tag_open = '<li class="page-item">';
                 $Pagination->overall_tag_close = '</ul>';
                 $Pagination->overall_tag_open = '<ul class="pagination">'."\n";
                 $Pagination->page_number_type = $page_number_type;
