@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Pagination
- * @version 3.0
+ * @version 3.1.0
  * @author Vee W.
  * @license http://opensource.org/licenses/MIT MIT
  */
@@ -86,6 +86,10 @@ class Pagination
      */
     public $first_page_always_show = false;
     /**
+     * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
+     */
+    public $first_page_link_attributes = [];
+    /**
      * @var string The first page tag open. If you set to display first page, this will be placed before link to the first page.
      */
     public $first_tag_open = ' ';
@@ -103,6 +107,10 @@ class Pagination
      */
     public $last_page_always_show = false;
     /**
+     * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
+     */
+    public $last_page_link_attributes = [];
+    /**
      * @var string The last page tag open. If you set to display last page, this will be placed before link to the last page.
      */
     public $last_tag_open = ' ';
@@ -112,13 +120,17 @@ class Pagination
     public $last_tag_close = ' ';
 
     /**
-     * @var mixed The link text of the paginate that will go to the next page. Set to false to not displaying next page link.
-     */
-    public $next_page_text = 'Next &rsaquo;';
-    /**
      * @var boolean If you are at last page the next page link will not show if you set this value to false, if you set to true it will be always show the next page link.
      */
     public $next_page_always_show = false;
+    /**
+     * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
+     */
+    public $next_page_link_attributes = [];
+    /**
+     * @var mixed The link text of the paginate that will go to the next page. Set to false to not displaying next page link.
+     */
+    public $next_page_text = 'Next &rsaquo;';
     /**
      * @var string The next page tag open. If you set to display next page, this will be placed before link to the next page.
      */
@@ -129,13 +141,17 @@ class Pagination
     public $next_tag_close = ' ';
 
     /**
-     * @var mixed The link text of the paginate that will go to the previous page. Set to false to not displaying previous page link.
-     */
-    public $previous_page_text = '&lsaquo; Previous';
-    /**
      * @var boolean If you are at first page the previous page link will not show if you set this value to false, if you set to true it will be always show the previous page link.
      */
     public $previous_page_always_show = false;
+    /**
+     * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
+     */
+    public $previous_page_link_attributes = [];
+    /**
+     * @var mixed The link text of the paginate that will go to the previous page. Set to false to not displaying previous page link.
+     */
+    public $previous_page_text = '&lsaquo; Previous';
     /**
      * @var string The previous page tag open. If you set to display previous page, this will be placed before link to the previous page.
      */
@@ -145,6 +161,10 @@ class Pagination
      */
     public $previous_tag_close = ' ';
 
+    /**
+     * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
+     */
+    public $current_page_link_attributes = [];
     /**
      * @var boolean Display current link at current page. Set to true to display, false not to display.
      */
@@ -162,6 +182,10 @@ class Pagination
      * @var boolean Display the page numbers or not. Set to true to display, false not to display.
      */
     public $number_display = true;
+    /**
+     * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
+     */
+    public $number_page_link_attributes = [];
     /**
      * @var string The page number tag open. If you set to display page number, this will be placed before link to the page number.
      */
@@ -274,7 +298,28 @@ class Pagination
                         $pagination_rendered .= $page_item['tag_open'];
                     }
                     if (array_key_exists('link', $page_item) && $page_item['link'] != null) {
-                        $pagination_rendered .= '<a href="' . $page_item['link'] . '">';
+                        $linkAttributes = '';
+                        if (property_exists($this, $page_key . '_link_attributes')) {
+                            $propertyName = $page_key . '_link_attributes';
+                        } elseif (is_numeric($page_key)) {
+                            $propertyName = 'number_page_link_attributes';
+                            if (array_key_exists('current_page', $page_item) && $page_item['current_page'] === true) {
+                                $propertyName = 'current_page_link_attributes';
+                            }
+                        }
+
+                        if (isset($propertyName) && is_array($this->{$propertyName})) {
+                            foreach ($this->{$propertyName} as $attributeName => $attributeValue) {
+                                if (strtolower($attributeName) === 'href') {
+                                    continue;
+                                }
+                                $linkAttributes .= ' ' . $attributeName . '="' . $attributeValue . '"';
+                            }// end foreach;
+                            unset($attributeName, $attributeValue);
+                        }
+                        
+                        $pagination_rendered .= '<a ' . $linkAttributes . ' href="' . $page_item['link'] . '">';
+                        unset($linkAttributes, $propertyName);
                     }
                     if (array_key_exists('text', $page_item)) {
                         $pagination_rendered .= $page_item['text'];
@@ -502,6 +547,7 @@ class Pagination
             $generated_pages[$i] = array();
             $generated_pages[$i]['tag_open'] = $this->current_tag_open;
             $generated_pages[$i]['link'] = ($this->current_page_link === true ? $this->generateUrl($i) : null);
+            $generated_pages[$i]['current_page'] = true;
             $generated_pages[$i]['page_value'] = $this->generateUrl($i, '', true);
             $generated_pages[$i]['text'] = $output['current_page_number_displaying'];
             $generated_pages[$i]['tag_close'] = $this->current_tag_close;

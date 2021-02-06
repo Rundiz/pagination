@@ -464,7 +464,7 @@ unset($query_string_array);
                 ?> 
             </div>
 
-            <h4>Bootstrap style</h4>
+            <h4>Bootstrap 3 style</h4>
             <p>This example override <strong>all</strong> class&#039;s properties, uses Bootstrap element style and css.</p>
             <div class="each-example-block">
                 <?php
@@ -474,37 +474,43 @@ unset($query_string_array);
                 $Pagination->total_records = $total_records;// *This property must be set.
                 $Pagination->page_number_value = $start;// *This property must be set.
                 $Pagination->current_page_link = true;
+                $Pagination->current_page_link_attributes = ['class' => 'page-link is-current-page active'];
                 $Pagination->current_tag_close = '</li>'."\n";
-                $Pagination->current_tag_open = '<li class="active">';
+                $Pagination->current_tag_open = '<li class="page-item active">';
                 $Pagination->first_page_always_show = true;
+                $Pagination->first_page_link_attributes = ['class' => 'page-link'];
                 $Pagination->first_page_text = '|&lt;';
                 $Pagination->first_tag_close = '</li>'."\n";
-                $Pagination->first_tag_open = '<li class="first">';
+                $Pagination->first_tag_open = '<li class="page-item first">';
                 $Pagination->items_per_page = $limit;
                 $Pagination->last_page_always_show = true;
+                $Pagination->last_page_link_attributes = ['class' => 'page-link'];
                 $Pagination->last_page_text = '&gt;|';
                 $Pagination->last_tag_close = '</li>'."\n";
-                $Pagination->last_tag_open = '<li class="last">';
+                $Pagination->last_tag_open = '<li class="page-item last">';
                 $Pagination->next_page_always_show = true;
+                $Pagination->next_page_link_attributes = ['class' => 'page-link'];
                 $Pagination->next_page_text = '&gt;';
                 $Pagination->next_tag_close = '</li>'."\n";
-                $Pagination->next_tag_open = '<li class="next">';
+                $Pagination->next_tag_open = '<li class="page-item next">';
                 $Pagination->number_adjacent_pages = 3;
                 $Pagination->number_display = true;
+                $Pagination->number_page_link_attributes = ['class' => 'page-link'];
                 $Pagination->number_tag_close = '</li>'."\n";
                 $Pagination->number_tag_open = '<li>';
                 $Pagination->overall_tag_close = '</ul>';
                 $Pagination->overall_tag_open = '<ul class="pagination">'."\n";
                 $Pagination->page_number_type = $page_number_type;
                 $Pagination->previous_page_always_show = true;
+                $Pagination->previous_page_link_attributes = ['class' => 'page-link'];
                 $Pagination->previous_page_text = '&lt;';
                 $Pagination->previous_tag_close = '</li>'."\n";
-                $Pagination->previous_tag_open = '<li class="previous">';
+                $Pagination->previous_tag_open = '<li class="page-item previous">';
                 $Pagination->unavailable_after = 3;
                 $Pagination->unavailable_before = 1;
                 $Pagination->unavailable_display = true;
                 $Pagination->unavailable_tag_close = '</a></li>'."\n";
-                $Pagination->unavailable_tag_open = '<li class="unavailable"><a>';
+                $Pagination->unavailable_tag_open = '<li class="page-item unavailable"><a class="page-link">';
                 $Pagination->unavailable_text = '..';
                 // create pagination links.
                 echo $Pagination->createLinks(':pagination');
