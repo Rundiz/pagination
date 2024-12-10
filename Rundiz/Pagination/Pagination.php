@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Pagination
- * @version 3.1.0
+ * @version 3.1.1
  * @author Vee W.
  * @license http://opensource.org/licenses/MIT MIT
  */
@@ -88,7 +88,7 @@ class Pagination
     /**
      * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
      */
-    public $first_page_link_attributes = [];
+    public $first_page_link_attributes = array();
     /**
      * @var string The first page tag open. If you set to display first page, this will be placed before link to the first page.
      */
@@ -109,7 +109,7 @@ class Pagination
     /**
      * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
      */
-    public $last_page_link_attributes = [];
+    public $last_page_link_attributes = array();
     /**
      * @var string The last page tag open. If you set to display last page, this will be placed before link to the last page.
      */
@@ -126,7 +126,7 @@ class Pagination
     /**
      * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
      */
-    public $next_page_link_attributes = [];
+    public $next_page_link_attributes = array();
     /**
      * @var mixed The link text of the paginate that will go to the next page. Set to false to not displaying next page link.
      */
@@ -147,7 +147,7 @@ class Pagination
     /**
      * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
      */
-    public $previous_page_link_attributes = [];
+    public $previous_page_link_attributes = array();
     /**
      * @var mixed The link text of the paginate that will go to the previous page. Set to false to not displaying previous page link.
      */
@@ -164,7 +164,7 @@ class Pagination
     /**
      * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
      */
-    public $current_page_link_attributes = [];
+    public $current_page_link_attributes = array();
     /**
      * @var boolean Display current link at current page. Set to true to display, false not to display.
      */
@@ -185,7 +185,7 @@ class Pagination
     /**
      * @var array The first page link attributes in associative array where key is attribute name. Example array('class' => 'my class'). Must not contains `href` attribute.
      */
-    public $number_page_link_attributes = [];
+    public $number_page_link_attributes = array();
     /**
      * @var string The page number tag open. If you set to display page number, this will be placed before link to the page number.
      */
