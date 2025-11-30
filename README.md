@@ -2,7 +2,7 @@
 
 PHP Pagination.<br>
 The highly customizable PHP pagination class. 
-Tested on PHP 8.4.
+Tested on PHP 8.5.
 
 [![Latest Stable Version](https://poser.pugx.org/rundiz/pagination/v/stable)](https://packagist.org/packages/rundiz/pagination)
 [![License](https://poser.pugx.org/rundiz/pagination/license)](https://packagist.org/packages/rundiz/pagination)
